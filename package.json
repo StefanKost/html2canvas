@@ -1,6 +1,6 @@
 {
     "title": "html2canvas",
-    "name": "@cantoo/html2canvas",
+    "name": "@stefankost/html2canvas",
     "description": "Screenshots with JavaScript",
     "main": "dist/html2canvas.min.js",
     "module": "dist/html2canvas.esm.js",
@@ -14,9 +14,8 @@
     },
     "contributors": [
         {
-            "email": "dev@cantoo.fr",
-            "name": "Cantoo",
-            "url": "https://cantoo.fr"
+            "email": "kostia.stefanovitch@ukr.net",
+            "name": "Kostya Stefanovitch"
         }
     ],
     "engines": {
@@ -24,10 +23,10 @@
     },
     "repository": {
         "type": "git",
-        "url": "git@github.com:cantoo-scribe/html2canvas.git"
+        "url": "git@github.com:stefankost/html2canvas.git"
     },
     "bugs": {
-        "url": "https://github.com/cantoo-scribe/html2canvas//issues"
+        "url": "https://github.com/stefankost/html2canvas/issues"
     },
     "devDependencies": {
         "@types/express": "^4.17.17",
