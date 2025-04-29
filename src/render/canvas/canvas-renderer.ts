@@ -24,7 +24,14 @@ import {contentBox} from '../box-sizing';
 import {CanvasElementContainer} from '../../dom/replaced-elements/canvas-element-container';
 import {SVGElementContainer} from '../../dom/replaced-elements/svg-element-container';
 import {ReplacedElementContainer} from '../../dom/replaced-elements';
-import {EffectTarget, IElementEffect, isClipEffect, isOpacityEffect, isTransformEffect} from '../effects';
+import {
+    EffectTarget,
+    IElementEffect,
+    isClipEffect,
+    isFilterEffect,
+    isOpacityEffect,
+    isTransformEffect
+} from '../effects';
 import {contains} from '../../core/bitwise';
 import {calculateGradientDirection, calculateRadius, processColorStops} from '../../css/types/functions/gradient';
 import {FIFTY_PERCENT, getAbsoluteValue} from '../../css/types/length-percentage';
@@ -97,6 +104,12 @@ export class CanvasRenderer extends Renderer {
         this.ctx.save();
         if (isOpacityEffect(effect)) {
             this.ctx.globalAlpha = effect.opacity;
+        }
+
+        if (isFilterEffect(effect) && isSupportedFilter(this.ctx)) {
+            this.ctx.filter = effect.filter.map((item) =>
+                `${item.name}(${item.value.number}${('unit' in item.value) ? item.value.unit : ''})`
+            ).join(' ');
         }
 
         if (isTransformEffect(effect)) {
@@ -993,3 +1006,5 @@ const fixIOSSystemFonts = (fontFamilies: string[]): string[] => {
         ? fontFamilies.filter((fontFamily) => iOSBrokenFonts.indexOf(fontFamily) === -1)
         : fontFamilies;
 };
+
+const isSupportedFilter = (ctx: CanvasRenderingContext2D) => 'filter' in ctx;

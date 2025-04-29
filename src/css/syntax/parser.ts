@@ -147,6 +147,7 @@ export const isIdentToken = (token: CSSValue): token is StringValueToken => toke
 export const isStringToken = (token: CSSValue): token is StringValueToken => token.type === TokenType.STRING_TOKEN;
 export const isIdentWithValue = (token: CSSValue, value: string): boolean =>
     isIdentToken(token) && token.value === value;
+export const isCSSFunction = (token: CSSValue): token is CSSFunction => token.type === TokenType.FUNCTION;
 
 export const nonWhiteSpace = (token: CSSValue): boolean => token.type !== TokenType.WHITESPACE_TOKEN;
 export const nonFunctionArgSeparator = (token: CSSValue): boolean =>
